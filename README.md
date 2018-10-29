@@ -1,5 +1,4 @@
-> ![](media/image1.png){width="1.5805555555555555in"
-> height="0.7583333333333333in"}
+
 
   -- ----------
      Chef Doc
@@ -122,25 +121,8 @@ config and preconfigured. You get fetch it at this location
 Ex : <https://198.19.50.71/organizations/ddc/getting_started> =
 <https://chefserver/organizations/orgname/getting_started>
 
--   Click on the Administration tab
+-   Click on the Administration tab.Then your organization. Choose Starter kit. Then Download Starter kit
 
-![](media/image2.png){width="8.07446741032371in"
-height="1.961796806649169in"}
-
--   Then your organization
-
-![](media/image3.png){width="8.249267279090114in"
-height="2.03959864391951in"}
-
-Choose Starter kit
-
-![](media/image4.png){width="5.771665573053368in"
-height="3.0895384951881013in"}
-
--   Then Download Starter kit
-
-![](media/image5.png){width="8.567053805774279in"
-height="4.097724190726159in"}
 
 Extract the downloaded file with the utility of your likening. It will
 extract a chef-repo directory.
