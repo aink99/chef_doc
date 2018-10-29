@@ -1,5 +1,3 @@
-
-
   -- ----------
      Chef Doc
   -- ----------
@@ -63,7 +61,7 @@ Bootstrap / install client
 \# note sudo will want to run with a password, nopass does not seem to
 work.
 
-knife bootstrap 10.10.20.55 -x chartrse -P \'2dp00ba3\' \--sudo -N
+knife bootstrap 10.10.20.55 -x UserName -P \'YourPassword\' \--sudo -N
 rtx0l06
 
 knife ssh get's is information from chef server, when the secure bit it
@@ -121,16 +119,28 @@ config and preconfigured. You get fetch it at this location
 Ex : <https://198.19.50.71/organizations/ddc/getting_started> =
 <https://chefserver/organizations/orgname/getting_started>
 
--   Click on the Administration tab.Then your organization. Choose Starter kit. Then Download Starter kit
+-   Click on the Administration tab, Then your organization
 
+![](media/image1.png){width="8.249267279090114in"
+height="2.03959864391951in"}
+
+Choose Starter kit
+
+![](media/image2.png){width="5.771665573053368in"
+height="3.0895384951881013in"}
+
+-   Then Download Starter kit
+
+![](media/image3.png){width="8.567053805774279in"
+height="4.097724190726159in"}
 
 Extract the downloaded file with the utility of your likening. It will
 extract a chef-repo directory.
 
 \[chartrse\@rtxchwk01 \~\]\$ cd chef-repo/
 
-The hidden .chef directory is were your chef server key and knife config
-resides.
+The hidden. chef directory is where your chef server key and knife
+config resides.
 
 \[chartrse\@rtxchwk01 chef-repo\]\$ cat .chef/
 
@@ -292,10 +302,10 @@ Kitchen
 =======
 
 Kitchen starts a small chef server (called chef zero )on from your chef
-devlopement kit station and , can test the change. Driver can be
+development kit station and , can test the change. Driver can be
 hypervirtual-box(with the vagrant driver), docker etc.
 
-In this example , we don't have any cloud based VM a so will used the
+In this example, we don't have any cloud based VM a so will used the
 dokken driver (Docker image + systemd)
 
 Install the docker and dokken kitchen driver
@@ -465,12 +475,12 @@ You can test your regex on on the following site :
 
 Match:
 
-![](media/image6.png){width="11.65366469816273in"
+![](media/image4.png){width="11.65366469816273in"
 height="2.995949256342957in"}
 
 No match:
 
-![](media/image7.png){width="11.161069553805774in"
+![](media/image5.png){width="11.161069553805774in"
 height="3.341311242344707in"}
 
 Kitchen test , buildsm converge, test then destroy kitchen ex:
@@ -635,7 +645,7 @@ default-centos-7 Dokken Dokken Inspec Dokken \<Not Created\> \<None\>
 
 knife node list
 
-knife ssh \'name:rtx0l0\*\' -x chartrse -P \'2dp00ba3\' \'sudo
+knife ssh \'name:rtx0l0\*\' -x UserName -P \'YourPass\' \'sudo
 chef-client\' -a ipaddress
 
 knife node show rtx0l06
