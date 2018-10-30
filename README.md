@@ -457,7 +457,7 @@ Kitchen test , builds  converge, test then destroy kitchen ex:
  Knife and berks
 ================
 
-Knife ssh gets is information from chef server, when the secure bit it set to on the node, you need an extra attribute. This is in order to make it harder for the attacker in case you chef server get comprise. Ex: you need to specify -a ipaddress. ohai gathers the info IP , number of CPU and sends it to the chef server so it can be used .For example  the platform
+Knife ssh gets it's information from chef server. When the secure bit it set to on the node, you need to add an extra attribute. This is in order to make it harder for the attacker in case you chef server get compromise. For example,  you need to specify -a ipaddress. ohai gathers info such has IP , number of CPU and sends it to the chef server. Example the platform
 
 	chartrse@rtxchwk01 fai_linux_patch]$ ohai |grep -i '"platform":'
 	[2018-10-26T15:59:12-05:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
