@@ -17,7 +17,7 @@ Table of Contents
 
 [1.1 Document Control/Change History 1](#document-controlchange-history)
 
-[2 Bootstrap / install client 1](#_Toc528587311)
+[2 Bootstrap / install client 1](#_Toc528659327)
 
 [3 Chef Server user access 1](#chef-server-user-access)
 
@@ -29,17 +29,23 @@ Table of Contents
 
 [3.4 Starter kit 1](#starter-kit)
 
-[4 Install Chef Development kit 1](#install-chef-development-kit)
+[4 Git 1](#git)
 
-[4.1 Generate cookbook template 1](#generate-cookbook-template)
+[5 Install Chef Development kit 1](#install-chef-development-kit)
 
-[4.2 Create an attribute (Variable) 1](#create-an-attribute-variable)
+[5.1 Generate cookbook template 1](#generate-cookbook-template)
 
-[4.3 Create a template 1](#create-a-template)
+[5.2 Create an attribute (Variable) 1](#create-an-attribute-variable)
 
-[4.4 Generate recipe 1](#generate-recipe)
+[5.3 Create a template 1](#create-a-template)
 
-[5 Kitchen 1](#kitchen)
+[5.4 Generate recipe 1](#generate-recipe)
+
+[6 Kitchen 1](#kitchen)
+
+[6.1 Test with inspec 1](#test-with-inspec)
+
+[7 Knife and berks 1](#knife-and-berks)
 
 Document Control
 ================
@@ -58,34 +64,11 @@ Bootstrap / install client
 
 <https://docs.chef.io/install_chef_air_gap.html>
 
-\# note sudo will want to run with a password, nopass does not seem to
-work.
+\# note sudo will want to run with a password, sudoers nopass
+permission, does not seem to work.
 
 knife bootstrap 10.10.20.55 -x UserName -P \'YourPassword\' \--sudo -N
 rtx0l06
-
-knife ssh get's is information from chef server, when the secure bit it
-set to on on the node, you need extra attribute, This is in order to
-make it harder for the attacker in case you chef server get comprimse.
-Ex: you need to specify -a ipaddress
-
-berks upload over knife upload
-
-ohai gather info ip \# cpu and send it to the chef server so it can be
-used ex the platform
-
-chartrse\@rtxchwk01 fai\_linux\_patch\]\$ ohai \|grep -i
-\'\"platform\":\'
-
-\[2018-10-26T15:59:12-05:00\] INFO: The plugin path
-/etc/chef/ohai/plugins does not exist. Skipping\...
-
-\"platform\": \"oracle\",
-
-\[chartrse\@rtxchwk01 fai\_linux\_patch\]\$
-
-knife ssh \'name:rtx0l0\*\' -x chartrse -P \'2dp00ba3\' \'sudo
-chef-client\' -a ipaddress
 
 Chef Server user access
 =======================
@@ -103,12 +86,12 @@ chef-server-ctl org-list
 Create user
 -----------
 
-chef-server-ctl user-create chartrse Sebastien Chartrand
-sebastien.chatrand\@fujitsu.com \'2dp00ba3\'
+chef-server-ctl user-create UserName Sebastien Chartrand
+sebastien.chatrand\@fujitsu.com \'Mypass\'
 
 Attach to org has an admin
 
-chef-server-ctl org-user-add rtx chartrse --admin
+chef-server-ctl org-user-add rtx UserName --admin
 
 Starter kit
 -----------
@@ -116,7 +99,7 @@ Starter kit
 The Starter is a preconfigure tar balled directory that has your chef
 config and preconfigured. You get fetch it at this location
 
-Ex : <https://198.19.50.71/organizations/ddc/getting_started> =
+Ex : <https://1.1.1.1/organizations/ddc/getting_started> =
 <https://chefserver/organizations/orgname/getting_started>
 
 -   Click on the Administration tab, Then your organization
@@ -216,7 +199,7 @@ fai\_linux\_apache
 Generate cookbook template
 --------------------------
 
-Configure your get settings (Only if you have not done it brefore)
+Configure your get settings (Only if you have not done it before)
 
 git config \--global user.email \"sebastien.chartrand\@fujitsu.com\"
 
@@ -483,7 +466,7 @@ No match:
 ![](media/image5.png){width="11.161069553805774in"
 height="3.341311242344707in"}
 
-Kitchen test , buildsm converge, test then destroy kitchen ex:
+Kitchen test , builds converge, test then destroy kitchen ex:
 
 chartrse\@rtxchwk01 fai\_linux\_baseline\]\$ kitchen test
 
@@ -640,18 +623,174 @@ default-centos-7 Dokken Dokken Inspec Dokken \<Not Created\> \<None\>
 
 \[chartrse\@rtxchwk01 fai\_linux\_baseline\]\$
 
- knife
-======
+ Knife and berks
+================
 
-knife node list
+Knife ssh gets is information from chef server, when the secure bit it
+set to on the node, you need an extra attribute. This is in order to
+make it harder for the attacker in case you chef server get comprise.
+Ex: you need to specify -a ipaddress. ohai gathers the info IP , number
+of CPU and sends it to the chef server so it can be used .For example
+the platform
 
-knife ssh \'name:rtx0l0\*\' -x UserName -P \'YourPass\' \'sudo
-chef-client\' -a ipaddress
+chartrse\@rtxchwk01 fai\_linux\_patch\]\$ ohai \|grep -i
+\'\"platform\":\'
 
-knife node show rtx0l06
+\[2018-10-26T15:59:12-05:00\] INFO: The plugin path
+/etc/chef/ohai/plugins does not exist. Skipping\...
+
+\"platform\": \"oracle\",
+
+To upload your cookbook to your chef server use:
+
+\[chartrse\@rtxchwk01 fai\_linux\_baseline\]\$ berks upload
+
+Uploaded fai\_linux\_baseline (0.2.0) to:
+\'https://rtxlchp01.rtxlab.local/organizations/rtx\'
+
+If you run the command again without changing your version metadata.rb ,
+the server will notice and won't upload your cookbook.
+
+\[chartrse\@rtxchwk01 fai\_linux\_baseline\]\$ berks upload
+
+Skipping fai\_linux\_baseline (0.1.0) (frozen)
+
+\[chartrse\@rtxchwk01 fai\_linux\_baseline\]\$
+
+This on reason to use berks upload over knife upload. Berks add an extra
+protection will knife upload could bypass it
+
+To fetch any cookbook dependencies, use berks install:
+
+\[chartrse\@rtxchwk01 chef-svrm1\]\$ berks install
+
+Resolving cookbook dependencies\...
+
+Fetching \'chef-svrm1\' from source at .
+
+Fetching cookbook index from https://supermarket.chef.io\...
+
+Using chef-sugar (4.1.0)
+
+Using firewall (2.6.5)
+
+Installing hostsfile (3.0.1)
+
+Using chef-svrm1 (0.1.0) from source at .
+
+\[chartrse\@rtxchwk01 chef-svrm1\]\$
+
+This will fetch all dependencies that are in the metadata.rb
+
+\[chartrse\@rtxchwk01 chef-svrm1\]\$ grep depends metadata.rb
+
+depends \'hostsfile\'
+
+depends \'firewall\'
+
+This is how to attaches a recipe to the node (runlist) . It will be
+executed the next time the node performs the command chef-client
 
 knife node run\_list add rtxlks01 \'recipe\[fai\_linux\_baseline\]\'
 
-knife node delete rtxlks01.rtxlab.local
+To force a node to check and execute it's run list perform the following
+command:
 
-bersk upload
+knife ssh \'name:rtx0l0\*\' -x UserName -P \'Password\' \'sudo
+chef-client\' -a ipaddress
+
+You can place regex or wildcards in \'name:nodname\'.
+
+Here are some commands to performs against the node
+
+-   list the nodes
+
+chartrse\@rtxchwk01 chef-svrm1\]\$ knife node list
+
+RTXLTST01.RTXLAB.Local
+
+RTXLTST03.RTXLAB.Local
+
+RTXLTST04.RTXLAB.Local
+
+RTXLTST05.RTXLAB.Local
+
+RTXLTST06.RTXLAB.Local
+
+RTXLTST07.RTXLAB.Local
+
+RTXLTST10.rtxlab.local
+
+RTXLTST11.rtxlab.local
+
+TestNode
+
+rtx0l06
+
+rtxchwk01.rtxlab.local
+
+rtxlchr04.rtxlab.local
+
+rtxlchs01.rtxlab.local
+
+rtxlchw01.rtxlab.local
+
+rtxles01.rtxlab.local
+
+rtxles02.rtxlab.local
+
+rtxles03.rtxlab.local
+
+rtxlks01
+
+rtxltst12.rtxlab.local
+
+-   Show node information
+
+\[chartrse\@rtxchwk01 chef-svrm1\]\$ knife node show rtx0l06
+
+Node Name: rtx0l06
+
+Environment: \_default
+
+FQDN:
+
+IP:
+
+Run List: recipe\[cis-rhel\], recipe\[fai\_linux\_olscan\],
+recipe\[fai\_linux\_patch\]
+
+Roles:
+
+Recipes: cis-rhel, cis-rhel::default, fai\_linux\_olscan,
+fai\_linux\_olscan::default, fai\_linux\_patch,
+fai\_linux\_patch::default, cis-rhel::aide, aide::default, cis-rhel::at,
+cis-rhel::auditd, auditd::rules, auditd::default, cis-rhel::core\_dumps,
+os-hardening::limits, cis-rhel::cron, cron::default,
+cis-rhel::firewalld, firewall::default, cis-rhel::grub,
+cis-rhel::kernel\_modules, cis-rhel::login\_banners,
+cis-rhel::login\_defs, os-hardening::login\_defs,
+cis-rhel::network\_packet\_remediation, sysctl::default,
+sysctl::service, cis-rhel::ntp, ntp::default, cis-rhel::pam,
+os-hardening::pam, cis-rhel::partitions, cis-rhel::rsyslog,
+rsyslog::client, rsyslog::default, cis-rhel::packages\_services,
+cis-rhel::ssh, ssh-hardening::default, ssh-hardening::server,
+ssh-hardening::client, cis-rhel::sysctl, os-hardening::sysctl,
+sysctl::apply, cis-rhel::syslog-ng, cis-rhel::useradd,
+cis-rhel::minimize\_access, os-hardening::minimize\_access,
+os-hardening::suid\_sgid, audit::default, audit::inspec,
+fai\_linux\_patch::rh\_yumall
+
+Platform: oracle 6.10
+
+Tags:
+
+-   Delete a node
+
+\[chartrse\@rtxchwk01 chef-svrm1\]\$ knife node delete TestNode
+
+Do you really want to delete TestNode? (Y/N) N
+
+You said no, so I\'m done here.
+
+\[
