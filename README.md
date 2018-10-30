@@ -13,39 +13,39 @@
 
 Table of Contents
 
-[1 Document Control 1](#document-control)
+[1 Document Control ](#document-control)
 
-[1.1 Document Control/Change History 1](#document-controlchange-history)
+[1.1 Document Control/Change History ](#document-controlchange-history)
 
-[2 Bootstrap / install client 1](#_Toc528659327)
+[2 Bootstrap / install client ](#_Toc528659327)
 
-[3 Chef Server user access 1](#chef-server-user-access)
+[3 Chef Server user access ](#chef-server-user-access)
 
-[3.1 List all users 1](#list-all-users)
+[3.1 List all users ](#list-all-users)
 
-[3.2 List organization 1](#list-organization)
+[3.2 List organization ](#list-organization)
 
-[3.3 Create user 1](#create-user)
+[3.3 Create user ](#create-user)
 
-[3.4 Starter kit 1](#starter-kit)
+[3.4 Starter kit ](#starter-kit)
 
-[4 Git 1](#git)
+[4 Git ](#git)
 
-[5 Install Chef Development kit 1](#install-chef-development-kit)
+[5 Install Chef Development kit ](#install-chef-development-kit)
 
-[5.1 Generate cookbook template 1](#generate-cookbook-template)
+[5.1 Generate cookbook template ](#generate-cookbook-template)
 
-[5.2 Create an attribute (Variable) 1](#create-an-attribute-variable)
+[5.2 Create an attribute (Variable) ](#create-an-attribute-variable)
 
-[5.3 Create a template 1](#create-a-template)
+[5.3 Create a template ](#create-a-template)
 
-[5.4 Generate recipe 1](#generate-recipe)
+[5.4 Generate recipe ](#generate-recipe)
 
-[6 Kitchen 1](#kitchen)
+[6 Kitchen ](#kitchen)
 
-[6.1 Test with inspec 1](#test-with-inspec)
+[6.1 Test with inspec ](#test-with-inspec)
 
-[7 Knife and berks 1](#knife-and-berks)
+[7 Knife and berks ](#knife-and-berks)
 
 Document Control
 ================
@@ -103,18 +103,14 @@ Ex : <https://1.1.1.1/organizations/ddc/getting_started> = <https://chefserver/o
 
 -   Click on the Administration tab, Then your organization
 
-![](media/image1.png){width="8.249267279090114in"
-height="2.03959864391951in"}
-
+![](images/starter1.png)
 Choose Starter kit
 
-![](media/image2.png){width="5.771665573053368in"
-height="3.0895384951881013in"}
+![](images/starter2.png)
 
 -   Then Download Starter kit
 
-![](media/image3.png){width="8.567053805774279in"
-height="4.097724190726159in"}
+![](images/starter3.png)
 
 Extract the downloaded file with the utility of your likening. It will
 extract a chef-repo directory.
@@ -368,6 +364,13 @@ Add the following resource called file. Here are making sure that the line that 
 
 You can test your regex on on the following site : https://regex101.com/
 
+* Match
+* 
+![match1](images/match1.png)
+
+* No Match
+* 
+![match1](images/match2.png)
 
  
 
