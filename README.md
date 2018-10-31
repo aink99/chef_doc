@@ -67,8 +67,7 @@ Bootstrap / install client
 \# note sudo will want to run with a password, sudoers nopass
 permission, does not seem to work.
 
-	knife bootstrap 10.10.20.55 -x UserName -P \'YourPassword\' \--sudo -N
-rtx0l06
+	knife bootstrap 10.10.20.55 -x UserName -P 'YourPassword' --sudo -N rtx0l06
 
 Chef Server user access
 =======================
