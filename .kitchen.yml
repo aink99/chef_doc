@@ -1,13 +1,14 @@
 ---
 driver:
-  name: dokken
-  privileged: true # because Docker and SystemD/Upstart
+  name: lxd_cli
+  #public_key_path: "~/.ssh/id_rsa.pub"
+  username: root
+  password: kitchen
 
 provisioner:
-  name: dokken
-
-transport:
-  name: dokken
+  product_name: chef
+  install_strategy: skip # we have the chef client installed
+  #require_chef_omnibus: false   # we have the chef client installed !#old way
 
 verifier:
   name: inspec
@@ -20,14 +21,15 @@ platforms:
 #    intermediate_instructions:
 #      - RUN /usr/bin/apt-get update
 
-- name: centos-7
-  driver:
-    image: dokken/centos-7
-    pid_one_command: /usr/lib/systemd/systemd
+- name:  kitchen-ol7
 
 suites:
   - name: default
     run_list: 
       - recipe[fai_linux_baseline::default]
      #- recipe[test_cookbook::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
 

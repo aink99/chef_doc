@@ -24,6 +24,6 @@
 #end
 
 describe file('/etc/login.defs') do
-  its('content') { should match /^PASS_MIN_LEN.*14$/ }
+  its('content') { should match /^PASS_MIN_LEN.*14/ }
   #its('content') { should match /^PASS_MIN_LEN.*i<%= node['fai_linux_baseline']['password_length'] %>/ }
 end

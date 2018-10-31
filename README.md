@@ -162,7 +162,7 @@ Add only one file commit and push
 
 	touch foobar
 	git add foobar
-	git commit -m \"test commit foobar\"
+	git commit -m "test commit foobar"
 	git push
 
 Install Chef Development kit
@@ -371,6 +371,19 @@ You can test your regex on on the following site : https://regex101.com/
 * No Match
 * 
 ![match1](images/match2.png)
+
+You can now add this part to your kitchen yaml file:
+
+	suites:
+	  - name: default
+	    run_list:
+	      - recipe[fai_linux_baseline::default]
+	     #- recipe[test_cookbook::default]
+	    verifier:
+	      inspec_tests:
+	        - test/integration/default
+	    attributes:
+
 
  
 
