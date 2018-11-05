@@ -17,7 +17,7 @@ Table of Contents
 
 [1.1 Document Control/Change History ](#document-controlchange-history)
 
-[2 Bootstrap](#Bootstrap client)
+[2 Bootstrap](#bootstrap-client)
 
 [3 Chef Server user access ](#chef-server-user-access)
 
