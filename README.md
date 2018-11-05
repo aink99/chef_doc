@@ -47,6 +47,8 @@ Table of Contents
 
 [7 Knife and berks ](#knife-and-berks)
 
+[8 Scan and chef automate server] (#Scan-and-chef-automate-server)
+
 Document Control
 ================
 
@@ -560,4 +562,47 @@ Here are some commands to performs against the node
 	[chartrse@rtxchwk01 chef-svrm1]$ knife node delete TestNode
 	Do you really want to delete TestNode? (Y/N) N
 	You said no, so I'm done here.
+
+
+8	Scan and chef automate server
+=================================
+
+Do a chef generate cookbook
+
+	chef generate cookbook fai_linux_olscan
+	cd fai_linux_olscan
+
+Edit the default recipe 
+
+	vi recipes/default.rb
+
+and add include the default audit cookbook
+
+	 include_recipe 'audit::default'
+
+
+Edit your metadata.rb
+
+	vi  metadata.rb
+
+And add this dependency 
+
+	depends 'audit'
+
+Generate a new attribute
+
+	chef generate attribute auditprofile.rb 
+
+Add the following to attributes/auditprofile.rb
+
+
+	default['audit']['reporter'] = 'chef-server-automate'
+	
+	default['audit']['profiles'].push(
+	    # Profile from Chef Compliance
+	    {
+	      'name': 'FAI_Orl_Lnx_6_CIS_L1_test',			
+	      'compliance': 'chartrse/cis-ol6-level1-server'
+	    },
+	)
 
