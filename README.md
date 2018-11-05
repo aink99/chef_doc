@@ -17,7 +17,7 @@ Table of Contents
 
 [1.1 Document Control/Change History ](#document-controlchange-history)
 
-[2 Bootstrap / install client ](#_Toc528659327)
+[2 Bootstrap](#Bootstrap client)
 
 [3 Chef Server user access ](#chef-server-user-access)
 
@@ -59,12 +59,11 @@ Document Control/Change History
   1.0           2018-08-02   Final         
   ------------- ------------ ------------- ---------------------
 
-Bootstrap / install client
+Bootstrap client
 ==========================
 
 <https://docs.chef.io/install_chef_air_gap.html>
-
-\# note sudo will want to run with a password, sudoers nopass
+# note sudo will want to run with a password, sudoers nopass
 permission, does not seem to work.
 
 	knife bootstrap 10.10.20.55 -x UserName -P 'YourPassword' --sudo -N rtx0l06
