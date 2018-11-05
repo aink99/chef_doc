@@ -47,7 +47,7 @@ Table of Contents
 
 [7 Knife and berks ](#knife-and-berks)
 
-[8 Scan and chef automate server] (#Scan-and-chef-automate-server)
+[8 Scan and chef automate server](#Scan-and-chef-automate-server)
 
 Document Control
 ================
@@ -564,8 +564,8 @@ Here are some commands to performs against the node
 	You said no, so I'm done here.
 
 
-8	Scan and chef automate server
-=================================
+Scan and chef automate server
+=============================
 
 Do a chef generate cookbook
 
