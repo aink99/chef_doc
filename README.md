@@ -85,7 +85,7 @@ Create user
 -----------
 
 	chef-server-ctl user-create UserName Sebastien Chartrand
-	sebastien.chatrand\@fujitsu.com \'Mypass\'
+	sebastien.chatrand@fujitsu.com 'Mypass'
 
 Attach to org has an admin
 
@@ -171,9 +171,9 @@ Install Chef Development kit
 Note there's no best practice you chose multiple cookbook with one
 recipe or a cookbook with multiple recipe.
 
-Ex you could create a cookbook per tower ex fai\_linux\_os and put
+Ex you could create a cookbook per tower ex fai_linux_os and put
 multiple Linux recipe for some linux os and another one more specific
-fai\_linux\_apache
+fai_linux_apache
 
 Generate cookbook template
 --------------------------
@@ -209,7 +209,7 @@ Create a template
 Generate a template and copy or redirect the content of /etc/login.defs
 
 	chef generate template . login.defs
-	cat /etc/login.defs\>> templates/login.defs.erb
+	cat /etc/login.defs>> templates/login.defs.erb
 
 Modify the PASS_MIN\LEN like this so that it uses the attribute
 
