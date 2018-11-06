@@ -115,7 +115,7 @@ Choose Starter kit
 Extract the downloaded file with the utility of your likening. It will
 extract a chef-repo directory.
 
-	\[chartrse\@rtxchwk01 \~\]\$ cd chef-repo/
+	cd chef-repo/
 
 The hidden. chef directory is where your chef server key and knife
 config resides.
@@ -131,32 +131,31 @@ node_name                "chartrse"
 client_key               "#{current_dir}/chartrse.pem"
 chef_server_url          "https://rtxlchp01.rtxlab.local/organizations/rtx"
 cookbook_path            ["#{current_dir}/../cookbooks"]
-[chartrse@rtxchwk01 chef-repo]$
 
-	\[chartrse\@rtxchwk01 chef-repo\]\$ ls
+
+ ls
 
 cookbooks README.md roles
 
-\[chartrse\@rtxchwk01 chef-repo\]\$
+
 
 Git
 ===
+Add all files to the commit 
 
-Add all files to the commit
-
-	git add .
+	git add -A
 
 Commit and comment
 
-	git commit -m \"First commit\"
+	git commit -s -m "First commit"
 
 Add repository has origin in this example we used GitHub
 
-	git remote add origin <https://github.com/aink99/chef_doc.git>
-
+ 	git remote add origin https://github.com/aink99/chef_doc.git
+ 
 Push your change
 
-	git push -u origin master
+ 	git push -u origin master
 
 Add only one file commit and push
 
@@ -164,6 +163,8 @@ Add only one file commit and push
 	git add foobar
 	git commit -m "test commit foobar"
 	git push
+	 
+
 
 Install Chef Development kit
 ============================
@@ -566,6 +567,24 @@ Here are some commands to performs against the node
 
 Scan and chef automate server
 =============================
+Go to https://198.19.50.76/viz/#/welcome, compliance, profiles and then profile store.
+
+![automate1](images/automate1.png)
+
+ 
+
+Then chose Available search something like oracle Linux 7
+![automate2](images/automate2.png)
+ 
+
+Select cis Oracle Linux Benchmark level 7 and click on the orange get button.
+![automate3](images/automate3.png)
+ 
+
+Now if you head back to Compliance, it will be shown under Profiles.
+ 
+![automate4](images/automate4.png)
+
 
 Do a chef generate cookbook
 
