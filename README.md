@@ -141,6 +141,12 @@ cookbooks README.md roles
 
 Git
 ===
+If not done set your global git paramater.
+
+
+	git config --global user.email "sebastien.chartrand@fujitsu.com"
+	git config --global user.name "Sebastien Chartrand
+	
 Add all files to the commit 
 
 	git add -A
@@ -183,7 +189,7 @@ Generate cookbook template
 
 Configure your get settings (Only if you have not done it before)
 
-	git config --global user.email "sebastien.chartrand\@fujitsu.com\"
+	git config --global user.email "sebastien.chartrand@fujitsu.com"
 
 	git config --global user.name "Sebastien Chartrand
 
