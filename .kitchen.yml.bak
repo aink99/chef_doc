@@ -1,34 +1,38 @@
 ---
 driver:
-  #name: docker
-  name: dokken
+  #created a custom lxd image.  Installed the chef yum repo for the chef cliena, enable sshd , add my ssh key for root,
+  #then published it lxc publish  glowing-fly --alias=kitchen-ol7 --force  
+  name: lxd_cli
+  #public_key_path: "~/.ssh/id_rsa.pub" #Default
+  username: root
+  password: kitchen # driver works onliy witth ssh keys
+
 
 provisioner:
-  name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
-  sudo: false
+  product_name: chef
+  install_strategy: skip # we have the chef client installed
+  #require_chef_omnibus: false   # we have the chef client installed !#old way
 
 verifier:
   name: inspec
-  sudo: false
-
-transport:
-  name: dokken
 
 platforms:
-  #- name: ubuntu-16.04
-  - name: centos-7
-    driver:
-      image: dokken/centos-7
+#- name: ubuntu-18.04
+#  driver:
+#    image: dokken/ubuntu-18.04
+#    pid_one_command: /bin/systemd
+#    intermediate_instructions:
+#      - RUN /usr/bin/apt-get update
+
+- name:  kitchen-ol7
 
 suites:
   - name: default
-    run_list:
+    run_list: 
       - recipe[fai_linux_baseline::default]
+     #- recipe[test_cookbook::default]
     verifier:
       inspec_tests:
         - test/integration/default
     attributes:
+
