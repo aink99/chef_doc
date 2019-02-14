@@ -520,6 +520,7 @@ This is how to attaches a recipe to the node (runlist) . It will be executed the
 	knife node run_list add   rtxlks01 'recipe[fai_linux_baseline]'
 
 Add to the run list base on OS attribute.
+
 	knife exec -E 'nodes.transform("os:linux") {|n| puts n.name,n.run_list << "recipe[fai_linux_password_policy]" ;n.save}'
 
 To force a node to check and execute it’s run list perform the following command:
