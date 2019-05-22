@@ -86,8 +86,7 @@ List organization
 Create user
 -----------
 
-	chef-server-ctl user-create UserName Sebastien Chartrand
-	sebastien.chatrand@fujitsu.com 'Mypass'
+	chef-server-ctl user-create UserName Sebastien Chartrand sebastien.chatrand@fujitsu.com 'Mypass'
 
 Attach to org has an admin
 
